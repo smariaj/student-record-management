@@ -50,9 +50,25 @@ function App() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+  // NAME VALIDATION
+  const nameRegex = /^[A-Za-z ]+$/;
+
+  if (!nameRegex.test(formData.name)) {
+    alert("Name should contain only letters");
+    return;
+  }
+
+  // AGE VALIDATION
+  const age = Number(formData.age);
+
+  if (age <= 0 || age >= 100) {
+    alert("Age should be between 1 and 99");
+    return;
+  }
+
   const studentData = {
     ...formData,
-    age: Number(formData.age),
+    age: age,
   };
 
   try {
